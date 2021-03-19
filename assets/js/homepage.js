@@ -4,7 +4,10 @@ function displayRepos(repo, searchTerm){
 
     for (let i = 0; i < repo.length; i++) {
         var repoName = repo[i].owner.login + "/" + repo[i].name;
-        var repoEl = $("<div>").addClass("list-item flex-row justify-space-between align-center");
+        var repoEl = $("<a>");
+        
+        repoEl.addClass("list-item flex-row justify-space-between align-center")
+        repoEl.attr("href", "./single-repo.html?repo=" + repoName);
         var repoNameEl = $("<span>").text(repoName);
         var statusEl = $("<span>").addClass("flex-row align-center");
         if(repo[i].open_issues_count > 0){
@@ -45,7 +48,7 @@ function getUserRepos(user){
 $(document).ready(function () {
     $("#user-form").on("click", "button", () => {
         var username = $("#username");
-        if(!username.val().trim()){
+        if(!username.val()){
             alert("Please enter a valid username!");
             return;
         }

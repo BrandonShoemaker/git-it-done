@@ -19,7 +19,7 @@ function displayIssues(issues){
         
         var titleEl = $("<span>").text(issues[i].title.trim());
         issueEl.append(titleEl);
-
+        debugger;
         var typeEl = $("<span>");
         if(issues.length <= 0){
             $("#issues-container").text("This repo has no issues!");
@@ -52,6 +52,7 @@ function getRepoIssues(repo){
         else{
             response.json().then((result) => {
                 alert("Error: " + result.message);
+                document.location.replace("./index.html");
             });
         }
     })
@@ -60,4 +61,4 @@ function getRepoIssues(repo){
     });
 }
 
-getRepoIssues("facebook/react");
+getRepoIssues(document.location.search.split("=")[1]);
